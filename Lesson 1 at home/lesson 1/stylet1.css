@@ -1,0 +1,24 @@
+.item1 {
+    width: 50px;
+    height: 50px;
+    border: none;
+    background-color: blue;
+    margin-bottom: 50px;
+}
+
+.item2 {
+    width: 50px;
+    height: 50px;
+    background-color: greenyellow;
+}
+
+input:focus {
+    width: 100%;
+    border: none;
+    transition: 1s 0s all linear;
+}
+
+.item2:hover {
+    width: 100%;
+    transition: 1s 0s all linear;
+}

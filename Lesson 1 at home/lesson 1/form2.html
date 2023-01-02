@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style2.css">
+    </head>
+    <body>
+        <div class="card">
+            <h1>Welcome to the 24x7 Fitness Club: Courts Reservation Page!!</h1>
+
+            <div class="main-item">
+                <fieldset class="assist-item">
+                    <legend>Member Demographics</legend>
+                    <div>
+                        <label for="text">
+                            Name
+                        </label>
+                        <input type="text" id="text" required pattern="\S+.*">
+                    </div>
+
+                    <div>
+                        <label>
+                            Are you a Member?
+                        </label>
+                        <br> <input type="radio" name="radio"> Member
+                        <input type="radio" name="radio"> Non-member
+                    </div>
+
+                    <div>
+                        <label for="email">
+                            Email
+                        </label>
+                        <input type="email" id="email" required pattern="\S+.*">
+                    </div>
+                </fieldset>
+
+                <div>
+                    <label>
+                        Facility
+                    </label>
+                    <select>
+                        <option value="Badminton">Badminton</option>
+                        <option value="Volleyball">Volleyball</option>
+                        <option value="Basketball">Basketball</option>
+                        <option value="Football">Football</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="date">
+                        Select a reservation date and time:
+                    </label>
+                    <br> <input type="date" id="date" required pattern="\S+.*">
+                    <input type="time" id="date" required pattern="\S+.*">
+                </div>
+
+                <div>
+                    <input type="checkbox" required pattern="\S+.*"> I agree to the club's reservation policy 
+                </div>
+
+                <button type="submit">SUBMIT</button>
+            </div>
+        </div>
+    </body>
+</html>
