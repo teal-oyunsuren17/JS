@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chivo+Mono:ital@1&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: -webkit-linear-gradient(white, black);
+            padding-top: 50px;
+        }
+
+        .menu {
+            margin-top: 20vw;
+            width: 100vw;
+            height: 60vh;
+            text-align: center;
+            font-size: 5rem;
+            font-family: 'Chivo Mono', monospace;
+            background: -webkit-linear-gradient(#eee, #333);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menu">
+        <div id="stopwatch"></div>
+        <button id="start-button">start</button>
+        <button id="stop-button">stop</button>
+        <button id="reset-button">clear</button>
+    </div>
+
+    <script src="js/watch2.js"></script>
+</body>
+
+</html>

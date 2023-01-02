@@ -1,0 +1,33 @@
+.menu {
+    width: 100vw;
+    height: 10vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#color1 {
+    width: 10%;
+    height: 100%;
+    background-color: brown;
+    border: none;
+}
+
+#color2 {
+    width: 10%;
+    height: 100%;
+    background-color: teal;
+    border: none;
+}
+
+#color3 {
+    width: 10%;
+    height: 100%;
+    background-color: black;
+    border: none;
+}
+marquee {
+    border: 2px palevioletred solid;
+    margin-bottom: 20px;
+    padding: 5px;
+}

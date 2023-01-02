@@ -1,0 +1,10 @@
+#taskInput :active {
+    border: none;
+    color: black;
+}
+
+.done .card-body div:first-child{
+    color: grey;
+    text-decoration: line-through;
+}
+

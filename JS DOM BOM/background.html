@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+        body {
+            background-color: teal;
+        } 
+        marquee {
+            border : 2px solid palevioletred;
+            width: 50vw;
+            margin-left: 25vw;
+        }
+        #color1 {
+            width: 50vw;
+            height: 5vh;
+            margin-top: 10px;
+        }
+        .menu div {
+            margin-top: 10px;
+            height: 5vh;
+            padding-top: 2vh;
+            background-color: azure;
+        }
+        </style>
+    </head>
+    <body>
+        <marquee behavior=alternate direction="right">Oyuka's creation</marquee>
+        <div class="menu">
+            <button id="button" onclick="background1()" ondblclick="background2()">Click to Set background color</button>
+            <div id="div1">Click to Set background color</div>
+            <div id="div2">Click to Set background color</div>
+        </div>
+
+        <script src="js/background.js"></script>
+    </body>
+</html>
