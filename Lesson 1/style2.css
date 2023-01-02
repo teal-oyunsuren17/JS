@@ -1,0 +1,16 @@
+.card {
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    line-height: 30px;
+    padding: 10px 30px 10px 50px;
+}
+
+span {
+    display: block;
+    width: 100px;
+    background-color: aqua;
+    text-align: end;
+}
+
+.item {
+    display: flex;
+}
