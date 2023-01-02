@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            background-color: #D3D3D3;
+        }
+
+        #products {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .pro1 {
+            width: 300px;
+            text-align: center;
+            border: 5px solid black;
+            margin-bottom: 10px;
+            background-color: white;
+            border-radius: 20px;
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .price {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .pro1 img {
+            width: 200px;
+            height: 200px;
+        }
+        .input {
+            margin-bottom: 20px ;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chivo+Mono:ital@1&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Product list</h1>
+    <div class="input">
+        <input type="text" onkeyup="myFunction()" id="input"/>
+    </div>
+    <div id="products"> </div>
+    <script src="js/product.js"></script>
+</body>
+
+</html>

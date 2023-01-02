@@ -1,0 +1,19 @@
+#area {
+    position: relative;
+    background-color: darksalmon;
+}
+
+#snakeBody {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border: 1px solid black;
+    border-radius: 25%;
+}
+
+.food {
+    background-color: teal;
+    border-radius: 50%;
+    position: absolute;
+}

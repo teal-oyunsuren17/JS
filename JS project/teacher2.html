@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="article"></div>
+
+        <script>
+            const query = window.location.search;
+            const id = query.split('=')[1];
+            fetch(`https://dummyjson.com/posts/${id}`)
+            .then((res) => res.json())
+            .then((posts) => {
+                const articleHtml = `<h1>${posts.title}</h1>
+                <div>
+                    ${posts.body}
+                </div>`;
+                document.getElementById('article').innerHTML = articleHtml;
+            });
+        </script>
+    </body>
+</html>
