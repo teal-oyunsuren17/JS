@@ -1,6 +1,9 @@
 import "../App.css";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import TodosNew from "./todosNew";
+import TodosError from "./todosError";
+import TodosList from "./todosList";
 
 export default function Todos() {
   const [text, setText] = useState("");
@@ -64,7 +67,7 @@ export default function Todos() {
   }
 
   function updateEditing(index, id) {
-    const newTodos = { ...todos };
+    const newTodos = [...todos];
     newTodos[index].text = editingTexts[id];
     setTodos(newTodos);
 
@@ -77,50 +80,33 @@ export default function Todos() {
     setEditingTexts(newEditingTexts);
   }
 
+  function handleKeyUp(e) {
+    if (e.code === "Enter") {
+      addTodo();
+    }
+  }
+
   return (
     <div className="todoMain">
-      <input value={text} onChange={textChange} />
-      <button onClick={addTodo}> Nemeh</button>
+      <TodosNew
+        text={text}
+        textChange={textChange}
+        addTodo={addTodo}
+        handleKeyUp={handleKeyUp}
+      />
 
-      {error && <div>Aldaa: {error}</div>}
-      <ul>
-        {todos.map((todo, index) => {
-          return (
-            <li
-              className="list"
-              key={todo.id}
-              style={{ textDecoration: todo.done ? "line-through" : "none" }}
-            >
-              {editingTexts[todo.id] !== undefined ? (
-                <>
-                  <input
-                    value={editingTexts[todo.id]}
-                    onChange={(e) => handleEditingText(todo.id, e)}
-                  />
-                  <button onClick={() => updateEditing(index, todo.id)}>
-                    hadgalah
-                  </button>
-                  <button onClick={() => cancelEditing(todo.id)}>bolih</button>
-                </>
-              ) : (
-                <>
-                  <input
-                    type={"checkbox"}
-                    onChange={(e) => handleDoneChange(todo.id, e)}
-                  />
-                  {todo.text}
-                  {!todo.done && (
-                    <button onClick={() => editingTodo(todo.id, index)}>
-                      zasah
-                    </button>
-                  )}
-                  <button onClick={() => deleteTodo(index)}>ustgah</button>
-                </>
-              )}
-            </li>
-          );
-        })}
-      </ul>
+      <TodosError error={error} />
+
+      <TodosList
+        todos={todos}
+        editingTexts={editingTexts}
+        handleEditingText={handleEditingText}
+        updateEditing={updateEditing}
+        cancelEditing={cancelEditing}
+        handleDoneChange={handleDoneChange}
+        editingTodo={editingTodo}
+        deleteTodo={deleteTodo}
+      />
     </div>
   );
 }

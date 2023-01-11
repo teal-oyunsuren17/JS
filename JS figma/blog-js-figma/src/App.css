@@ -8,3 +8,41 @@
 .list {
   list-style: none;
 }
+
+body {
+  background-color: pink;
+}
+
+
+.inputAndBtn input { 
+  border: 4px solid plum;
+  border-right: none;
+  border-radius: 20px 0 0 20px;
+  padding: 10px;
+}
+
+.inputAndBtn input:focus {
+  outline: none;
+}
+
+.inputAndBtn button {
+  border: 4px solid plum;
+  border-left: none;
+  background-color: cornflowerblue;
+  border-radius: 0 20px 20px 0;
+  padding: 10px;
+}
+
+.Lists {
+  max-width: 100%;
+  margin-bottom: 10px;
+}
+
+/* .editBtn {
+
+} */
+
+/* .removeBtn {
+
+} */
+
