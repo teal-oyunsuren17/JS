@@ -2,41 +2,21 @@ import "../App.css";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import TodosNew from "./todosNew";
-import TodosError from "./todosError";
 import TodosList from "./todosList";
 
 export default function Todos() {
-  const [text, setText] = useState("");
   const [todos, setTodos] = useState([]);
-  const [error, setError] = useState("");
-  const [editing, setEditing] = useState();
   const [editingTexts, setEditingTexts] = useState({});
 
-  function textChange(e) {
-    setText(e.target.value);
-  }
-
-  function addTodo() {
-    if (text === "") {
-      setError("Utgaa bichne uu");
-    } else {
-      if (editing === undefined) {
-        const newTodo = {
-          text: text,
-          done: false,
-          id: uuidv4(),
-        };
-        const newTodos = [newTodo, ...todos];
-        setTodos(newTodos);
-      } else {
-        const newTodos = [...todos];
-        newTodos[editing].text = text;
-        setTodos(newTodos);
-        setEditing(undefined);
-      }
-      setText("");
-      setError("");
-    }
+  function handlesave(text) {
+    const newTodo = {
+      text: text,
+      done: false,
+      id: uuidv4(),
+    };
+    const newTodos = [newTodo, ...todos];
+    setTodos(newTodos);
+    // setEditing(undefined);
   }
 
   function deleteTodo(index) {
@@ -80,22 +60,9 @@ export default function Todos() {
     setEditingTexts(newEditingTexts);
   }
 
-  function handleKeyUp(e) {
-    if (e.code === "Enter") {
-      addTodo();
-    }
-  }
-
   return (
     <div className="todoMain">
-      <TodosNew
-        text={text}
-        textChange={textChange}
-        addTodo={addTodo}
-        handleKeyUp={handleKeyUp}
-      />
-
-      <TodosError error={error} />
+      <TodosNew onSave={handlesave} />
 
       <TodosList
         todos={todos}

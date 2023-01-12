@@ -1,4 +1,30 @@
-export default function TodosNew({ text, textChange, addTodo, handleKeyUp }) {
+import { useState } from "react";
+import TodosError from "./todosError";
+
+export default function TodosNew({ onSave }) {
+  const [text, setText] = useState("");
+  const [error, setError] = useState("");
+  // const [editing, setEditing] = useState();
+
+  function handlesave() {
+    if (text === "") {
+      setError("Utgaa bichne uu");
+    } else {
+      onSave(text);
+      setText("");
+      setError("");
+    }
+  }
+
+  function textChange(e) {
+    setText(e.target.value);
+  }
+
+  function handleKeyUp(e) {
+    if (e.code === "Enter") {
+      handlesave();
+    }
+  }
   return (
     <>
       <div className="inputAndBtn">
@@ -8,8 +34,9 @@ export default function TodosNew({ text, textChange, addTodo, handleKeyUp }) {
           onKeyUp={handleKeyUp}
           placeholder="Enter your todo list"
         />
-        <button onClick={addTodo}>+</button>
+        <button onClick={handlesave}>+</button>
       </div>
+      <TodosError error={error} />
     </>
   );
 }
