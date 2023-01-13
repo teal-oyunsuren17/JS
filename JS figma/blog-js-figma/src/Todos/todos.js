@@ -16,7 +16,6 @@ export default function Todos() {
     };
     const newTodos = [newTodo, ...todos];
     setTodos(newTodos);
-    // setEditing(undefined);
   }
 
   function deleteTodo(index) {

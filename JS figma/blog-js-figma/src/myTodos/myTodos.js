@@ -32,22 +32,34 @@ export default function MyTodos() {
     const newEditingText = { ...editingText };
     newEditingText[id] = todos[index].text;
     setEditingText(newEditingText);
-    console.log(newEditingText[id]);
   }
 
   function removeTodo(id) {
     if (window.confirm("ustgah uu")) {
       const newTodo = [...todos];
       newTodo.splice(id, 1);
-      console.log(newTodo[id]);
       setTodos(newTodo);
     }
   }
 
   function handleTextEditing(id, e) {
-    const newTextEditing = [...editingText];
-    newTextEditing[id] = e.target.value;
-    setEditingText(newTextEditing);
+    const newEditingText = { ...editingText };
+    newEditingText[id] = e.target.value;
+    setEditingText(newEditingText);
+  }
+
+  function cancelEditing(id) {
+    const newEditingText = { ...editingText };
+    newEditingText[id] = undefined;
+    setEditingText(newEditingText);
+  }
+
+  function saveEditing(id, index) {
+    const newTodos = [...todos];
+    newTodos[index].text = editingText[id];
+    setTodos(newTodos);
+
+    cancelEditing(id);
   }
   return (
     <div>
@@ -69,8 +81,10 @@ export default function MyTodos() {
                     value={editingText[todo.id]}
                     onChange={(e) => handleTextEditing(todo.id, e)}
                   />
-                  <button>bolih</button>
-                  <button>hadgalah</button>
+                  <button onClick={() => cancelEditing(todo.id)}>bolih</button>
+                  <button onClick={() => saveEditing(todo.id, index)}>
+                    hadgalah
+                  </button>
                 </>
               ) : (
                 <>
