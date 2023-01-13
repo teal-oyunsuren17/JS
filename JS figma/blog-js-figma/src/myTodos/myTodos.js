@@ -39,6 +39,7 @@ export default function MyTodos() {
     if (window.confirm("ustgah uu")) {
       const newTodo = [...todos];
       newTodo.splice(id, 1);
+      console.log(newTodo[id]);
       setTodos(newTodo);
     }
   }
@@ -79,7 +80,7 @@ export default function MyTodos() {
                   />
                   {todo.text}
                   <button onClick={() => editTodo(todo.id, index)}>edit</button>
-                  <button onClick={() => removeTodo(todo.id)}>remove</button>
+                  <button onClick={() => removeTodo(index)}>remove</button>
                 </>
               )}
             </>
