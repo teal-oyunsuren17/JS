@@ -19,7 +19,6 @@ export default function TodosPractice() {
   }
 
   function deleteList(index) {
-    console.log(index);
     const newTodos = [...todos];
     newTodos.splice(index, 1);
     setTodos(newTodos);
