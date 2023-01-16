@@ -1,12 +1,13 @@
-import MyTodos from "./myTodos/myTodos";
-import Todos from "./Todos/todos";
-// import TodosPractice from "./todosPractice";
+// import MyTodos from "./myTodos/myTodos";
+// import Todos from "./Todos/todos";
+import TodosPractice from "./todosPractice";
 
 export default function App() {
   return (
     <>
-      <Todos />
-      <MyTodos />
+      {/* <Todos />
+      <MyTodos /> */}
+      <TodosPractice />
     </>
   );
 }

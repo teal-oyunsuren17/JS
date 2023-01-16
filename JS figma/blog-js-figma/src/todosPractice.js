@@ -4,10 +4,12 @@ import { v4 as uuidv4 } from "uuid";
 export default function TodosPractice() {
   const [text, setText] = useState("");
   const [todos, setTodos] = useState([]);
+
   function addList() {
     const newTodo = {
       text: text,
       id: uuidv4(),
+      done: false,
     };
     const newTodos = [newTodo, ...todos];
     setTodos(newTodos);
@@ -18,27 +20,40 @@ export default function TodosPractice() {
     setText(e.target.value);
   }
 
+  function editList() {}
+
   function deleteList(index) {
-    const newTodos = [...todos];
-    newTodos.splice(index, 1);
-    setTodos(newTodos);
+    console.log(index);
+    const newTodo = [...todos];
+    newTodo.splice(index, 1);
+    setTodos(newTodo);
+  }
+
+  function changeCheckbox(id) {
+    const newTodo = [...todos];
+    const index = newTodo.findIndex((todo) => todo.id === id);
+    newTodo[index].done = !newTodo[index].done;
+    setTodos(newTodo);
   }
 
   return (
     <div>
       <input value={text} onChange={changeText} />
       <button onClick={addList}>add</button>
-      <ul>
-        {todos.map((todo, index) => (
-          <>
-            <li key={todo.id}>
-              {todo.text}
-              <button>edit</button>
-              <button onClick={deleteList(index)}>delete</button>
-            </li>
-          </>
-        ))}
-      </ul>
+
+      {todos.map((todo, index) => (
+        <div>
+          <li
+            key={todo.id}
+            style={{ textDecoration: todo.done ? "line-through" : "none" }}
+          >
+            <input type={"checkbox"} onChange={() => changeCheckbox(todo.id)} />
+            {todo.text}
+            <button onClick={editList}>edit</button>
+            <button onClick={() => deleteList(index)}>remove</button>
+          </li>
+        </div>
+      ))}
     </div>
   );
 }
