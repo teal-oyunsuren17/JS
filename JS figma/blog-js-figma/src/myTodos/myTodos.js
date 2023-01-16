@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
 export default function MyTodos() {
@@ -62,13 +63,15 @@ export default function MyTodos() {
     cancelEditing(id);
   }
   return (
-    <div>
+    <div className="todoMain">
+      <h1>MyTodos</h1>
       <input value={text} onChange={changeInput} />
       <button onClick={addList}>add</button>
 
       <ul>
         {todos.map((todo, index) => (
           <li
+            className="list"
             key={todo.id}
             style={{
               textDecoration: todo.done ? "line-through" : "none",
@@ -101,6 +104,12 @@ export default function MyTodos() {
           </li>
         ))}
       </ul>
+      <p>
+        <Link to={"/TodosPractice"}>TodosPractice</Link>
+      </p>
+      <p>
+        <Link to={"/Todos"}>Todos</Link>
+      </p>
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../App.css";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
@@ -73,6 +74,12 @@ export default function Todos() {
         editingTodo={editingTodo}
         deleteTodo={deleteTodo}
       />
+      <p>
+        <Link to={"/MyTodos"}>MyTodos</Link>
+      </p>
+      <p>
+        <Link to={"/TodosPractice"}>TodosPractice</Link>
+      </p>
     </div>
   );
 }
