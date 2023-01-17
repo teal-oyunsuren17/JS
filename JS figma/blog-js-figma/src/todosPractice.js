@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import { useToast } from "@chakra-ui/react";
 
 export default function TodosPractice() {
+  const toast = useToast();
   const [text, setText] = useState("");
   const [todos, setTodos] = useState([]);
   const [error, setError] = useState("");
@@ -41,6 +43,13 @@ export default function TodosPractice() {
       setText("");
       setError("");
     }
+    toast({
+      title: "Account created.",
+      description: "We've created your account for you.",
+      status: "success",
+      duration: 9000,
+      isClosable: true,
+    });
   }
 
   function editList() {}
