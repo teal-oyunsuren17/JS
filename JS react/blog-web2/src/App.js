@@ -1,11 +1,12 @@
-import Admin from "./adminOriginal/Admin";
+// import Admin from "./adminOriginal/Admin";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Categories } from "./adminTeacher/Categories";
 // import Button from "react-bootstrap/Button";
 
 export default function App() {
   return (
     <>
-      <Admin />
+      <Categories />
     </>
   );
 }
