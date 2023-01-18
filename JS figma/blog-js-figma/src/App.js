@@ -59,26 +59,26 @@ export function MainApp() {
         <Link to={"/TodosPractice"}>TodosPractice</Link>
       </p>
 
-      <ToastExample />
+      {/* <ToastExample /> */}
     </div>
   );
 }
 
-function ToastExample() {
-  const toast = useToast();
-  return (
-    <button
-      onClick={() =>
-        toast({
-          title: "Account created.",
-          description: "We've created your account for you.",
-          status: "success",
-          duration: 9000,
-          isClosable: true,
-        })
-      }
-    >
-      Show Toast
-    </button>
-  );
-}
+// function ToastExample() {
+//   const toast = useToast();
+//   return (
+//     <button
+//       onClick={() =>
+//         toast({
+//           title: "Account created.",
+//           description: "We've created your account for you.",
+//           status: "success",
+//           duration: 9000,
+//           isClosable: true,
+//         })
+//       }
+//     >
+//       Show Toast
+//     </button>
+//   );
+// }

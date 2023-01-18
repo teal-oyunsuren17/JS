@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import { useToast } from "@chakra-ui/react";
+// import { useToast } from "@chakra-ui/react";
 
 export default function TodosPractice() {
-  const toast = useToast();
+  // const toast = useToast();
   const [text, setText] = useState("");
   const [todos, setTodos] = useState([]);
   const [error, setError] = useState("");
@@ -43,16 +43,16 @@ export default function TodosPractice() {
       setText("");
       setError("");
     }
-    toast({
-      title: "Account created.",
-      description: "We've created your account for you.",
-      status: "success",
-      duration: 9000,
-      isClosable: true,
-    });
+    // toast({
+    //   title: "Account created.",
+    //   description: "We've created your account for you.",
+    //   status: "success",
+    //   duration: 9000,
+    //   isClosable: true,
+    // });
   }
 
-  function editList() {}
+  function editList(id, index) {}
 
   function cancelEdit() {}
 
@@ -86,7 +86,9 @@ export default function TodosPractice() {
               onChange={() => changeCheckbox(todo.id)}
             />
             {todo.text}
-            {!todo.done && <button onClick={editList}>edit</button>}
+            {!todo.done && (
+              <button onClick={() => editList(todo.id, index)}>edit</button>
+            )}
             <button onClick={() => deleteList(index)}>remove</button>
 
             <input value={editText} onChange={(e) => editingText(todo.id, e)} />
