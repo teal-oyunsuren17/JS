@@ -8,7 +8,7 @@ export default function TodosPractice() {
   const [text, setText] = useState("");
   const [todos, setTodos] = useState([]);
   const [error, setError] = useState("");
-  const [editText, setEditText] = useState({});
+  const [editingText, setEditingText] = useState({});
 
   function changeText(e) {
     setText(e.target.value);
@@ -52,17 +52,30 @@ export default function TodosPractice() {
     // });
   }
 
-  function editList(id, index) {}
+  function editList(id, index) {
+    const newEditText = { ...editingText };
+    newEditText[id] = todos[index].text;
+    setEditingText(newEditText);
+  }
 
-  function cancelEdit() {}
+  function cancelEdit(id) {
+    const newEditText = { ...editingText };
+    newEditText[id] = undefined;
+    setEditingText(newEditText);
+  }
 
-  function saveEdit() {}
+  function saveEdit(id, index) {
+    const newTodos = [...todos];
+    newTodos[index].text = editingText[id];
+    setTodos(newTodos);
 
-  function editingText(id, e) {
-    const newEditText = { ...editText };
+    cancelEdit(id);
+  }
+
+  function editText(id, e) {
+    const newEditText = { ...editingText };
     newEditText[id] = e.target.value;
-    setEditText(newEditText);
-    console.log(newEditText);
+    setEditingText(newEditText);
   }
 
   return (
@@ -80,20 +93,31 @@ export default function TodosPractice() {
             key={todo.id}
             style={{ textDecoration: todo.done ? "line-through" : "none" }}
           >
-            <input
-              type={"checkbox"}
-              checked={todo.done}
-              onChange={() => changeCheckbox(todo.id)}
-            />
-            {todo.text}
-            {!todo.done && (
-              <button onClick={() => editList(todo.id, index)}>edit</button>
+            {editingText[todo.id] === undefined ? (
+              <>
+                <input
+                  type={"checkbox"}
+                  checked={todo.done}
+                  onChange={() => changeCheckbox(todo.id)}
+                />
+                {todo.text}
+                {!todo.done && (
+                  <button onClick={() => editList(todo.id, index)}>edit</button>
+                )}
+                <button onClick={() => deleteList(index)}>remove</button>
+              </>
+            ) : (
+              <>
+                <input
+                  value={editingText[todo.id]}
+                  onChange={(e) => editText(todo.id, e)}
+                />
+                <button onClick={() => cancelEdit(todo.id)}>bolih</button>
+                <button onClick={() => saveEdit(todo.id, index)}>
+                  hadgalah
+                </button>
+              </>
             )}
-            <button onClick={() => deleteList(index)}>remove</button>
-
-            <input value={editText} onChange={(e) => editingText(todo.id, e)} />
-            <button onClick={cancelEdit}>bolih</button>
-            <button onClick={saveEdit}>hadgalah</button>
           </li>
         </div>
       ))}

@@ -7,14 +7,14 @@ export default function MyTodos() {
   const [todos, setTodos] = useState([]);
   const [editingText, setEditingText] = useState({});
 
-  function changeInput(e) {
+  function changeText(e) {
     setText(e.target.value);
   }
 
-  function addList() {
+  function addTodos() {
     const newTodo = {
-      text: text,
       id: uuidv4(),
+      text: text,
       done: false,
     };
     const newTodos = [newTodo, ...todos];
@@ -23,10 +23,18 @@ export default function MyTodos() {
   }
 
   function changeCheckbox(id) {
-    const newTodo = [...todos];
-    const index = newTodo.findIndex((todo) => todo.id === id);
-    newTodo[index].done = !newTodo[index].done;
-    setTodos(newTodo);
+    const newTodos = [...todos];
+    const index = newTodos.findIndex((todo) => todo.id === id);
+    newTodos[index].done = !newTodos[index].done;
+    setTodos(newTodos);
+  }
+
+  function deleteTodo(index) {
+    if (window.confirm(`ustgah uu "${todos[index].text}"`)) {
+      const newTodos = [...todos];
+      newTodos.splice(index, 1);
+      setTodos(newTodos);
+    }
   }
 
   function editTodo(id, index) {
@@ -35,15 +43,7 @@ export default function MyTodos() {
     setEditingText(newEditingText);
   }
 
-  function removeTodo(id) {
-    if (window.confirm("ustgah uu")) {
-      const newTodo = [...todos];
-      newTodo.splice(id, 1);
-      setTodos(newTodo);
-    }
-  }
-
-  function handleTextEditing(id, e) {
+  function handleChangeText(id, e) {
     const newEditingText = { ...editingText };
     newEditingText[id] = e.target.value;
     setEditingText(newEditingText);
@@ -62,48 +62,55 @@ export default function MyTodos() {
 
     cancelEditing(id);
   }
+
   return (
     <div className="todoMain">
-      <h1>MyTodos</h1>
-      <input value={text} onChange={changeInput} />
-      <button onClick={addList}>add</button>
+      <div>
+        <input value={text} onChange={changeText} />
+        <button onClick={addTodos}>add</button>
+      </div>
 
       <ul>
         {todos.map((todo, index) => (
-          <li
-            className="list"
-            key={todo.id}
-            style={{
-              textDecoration: todo.done ? "line-through" : "none",
-            }}
-          >
-            <>
-              {editingText[todo.id] !== undefined ? (
-                <>
-                  <input
-                    value={editingText[todo.id]}
-                    onChange={(e) => handleTextEditing(todo.id, e)}
-                  />
-                  <button onClick={() => cancelEditing(todo.id)}>bolih</button>
-                  <button onClick={() => saveEditing(todo.id, index)}>
-                    hadgalah
-                  </button>
-                </>
-              ) : (
+          <>
+            <li
+              key={todo.id}
+              className="list"
+              style={{ textDecoration: todo.done ? "line-through" : "none" }}
+            >
+              {editingText[todo.id] === undefined ? (
                 <>
                   <input
                     type={"checkbox"}
                     onChange={() => changeCheckbox(todo.id)}
+                    checked={todo.done}
                   />
                   {todo.text}
-                  <button onClick={() => editTodo(todo.id, index)}>edit</button>
-                  <button onClick={() => removeTodo(index)}>remove</button>
+                  {!todo.done && (
+                    <button onClick={(e) => editTodo(todo.id, index)}>
+                      edit
+                    </button>
+                  )}
+
+                  <button onClick={() => deleteTodo(index)}>delete</button>
+                </>
+              ) : (
+                <>
+                  <input
+                    value={editingText[todo.id]}
+                    onChange={(e) => handleChangeText(todo.id, e)}
+                  />
+                  <button onClick={() => cancelEditing(todo.id)}>cancel</button>
+                  <button onClick={() => saveEditing(todo.id, index)}>
+                    save
+                  </button>
                 </>
               )}
-            </>
-          </li>
+            </li>
+          </>
         ))}
       </ul>
+
       <p>
         <Link to={"/TodosPractice"}>TodosPractice</Link>
       </p>
