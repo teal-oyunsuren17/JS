@@ -65,9 +65,10 @@ export function Example() {
     setEditingText(newEditingText);
   }
 
-  function editPicture() {
+  function editPicture(e) {
     const newPicture = { ...picture };
-    newPicture;
+    newPicture[list.id] = e.target.value;
+    setPicture(newPicture);
   }
 
   return (
