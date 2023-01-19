@@ -1,3 +1,4 @@
+import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Admin from "./adminOriginal/Admin";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -6,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { JsApp } from "./JsApp/jsApp";
 import { JsLoop } from "./JsApp/jsLoop";
 import { JsCondition } from "./JsApp/jsCondition";
+import { Client } from "./Client/client";
 // import { Categories } from "./adminTeacher/Categories";
 // import Button from "react-bootstrap/Button";
 
@@ -18,7 +20,7 @@ export default function App() {
           <Route path="loop" element={<JsLoop />} />
           <Route path="condition" element={<JsCondition />} />
         </Route>
-        <Route path="*" element={<div>Client app</div>} />
+        <Route path="*" element={<Client />} />
       </Routes>
 
       <ToastContainer position="top-right" />

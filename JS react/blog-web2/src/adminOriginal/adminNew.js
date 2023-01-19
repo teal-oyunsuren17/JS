@@ -9,6 +9,7 @@ export function Example() {
   const [text, setText] = useState("");
   const [list, setList] = useState([]);
   const [editingText, setEditingText] = useState({});
+  const [picture, setPicture] = useState({});
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -58,6 +59,17 @@ export function Example() {
 
   function editSave() {}
 
+  function cancelEdit(id) {
+    const newEditingText = { ...editingText };
+    newEditingText[id] = undefined;
+    setEditingText(newEditingText);
+  }
+
+  function editPicture() {
+    const newPicture = { ...picture };
+    newPicture;
+  }
+
   return (
     <div className=" m-5 text-center">
       <div className="d-flex justify-content-between">
@@ -72,7 +84,14 @@ export function Example() {
               <Modal.Title>Ангилал нэмэх</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <p>Нэр </p>
+              <div>
+                <input
+                  value={picture[list.id]}
+                  type={"text"}
+                  onChange={editPicture}
+                  placeholder="picture url"
+                />
+              </div>
               <input
                 value={text}
                 placeholder="Ангиллын нэр"
@@ -90,20 +109,21 @@ export function Example() {
           </Modal>
         </div>
       </div>
-      {list.map((list) => (
+      {list.map((list, index) => (
         <li key={list.id}>
-          {list.edit ? (
+          {editingText[list.id] === undefined ? (
             <>
               {list.text}
               <button onClick={() => editList(list.id)}>zasah</button>
+              <button>remove</button>
             </>
           ) : (
             <>
               <input
-                value={editingText}
+                value={editingText[list.id]}
                 onChange={(e) => editText(list.id, e)}
               />
-              <button>blih</button>
+              <button onClick={() => cancelEdit(list.id)}>bolih</button>
               <button onClick={editSave}>hadgalah</button>
             </>
           )}
