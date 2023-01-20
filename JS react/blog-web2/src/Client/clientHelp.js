@@ -1,3 +1,3 @@
 export function ClientHelp() {
-  return <div>Help</div>;
+  return <div>help</div>;
 }

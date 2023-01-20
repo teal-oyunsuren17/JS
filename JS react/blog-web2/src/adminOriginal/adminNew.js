@@ -9,7 +9,8 @@ export function Example() {
   const [text, setText] = useState("");
   const [list, setList] = useState([]);
   const [editingText, setEditingText] = useState({});
-  const [picture, setPicture] = useState({});
+  const [picturePath, setPicturePath] = useState("");
+  const [price, setPrice] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -24,10 +25,15 @@ export function Example() {
       text: text,
       id: uuidv4(),
       edit: true,
+      url: picturePath,
+      price: price,
     };
     const newLists = [newList, ...list];
     setList(newLists);
     setText("");
+    setPicturePath("");
+    setPrice("");
+
     toast.warn("🦄 Wow so easy!", {
       position: "top-right",
       autoClose: false,
@@ -40,14 +46,26 @@ export function Example() {
     });
   }
 
+  function changePrice(e) {
+    setPrice(e.target.value);
+  }
+
+  function changeImage(e) {
+    setPicturePath(e.target.value);
+  }
+
   function changeText(e) {
     setText(e.target.value);
   }
 
-  function editList(id) {
+  function editList(id, index) {
+    const newEditText = { ...editingText };
+    newEditText[id] = list[index].text;
+    setEditingText(newEditText);
+
     const newList = [...list];
-    const index = newList.findIndex((list) => list.id === id);
-    newList[index].edit = !newList[index].edit;
+    const bairlal = newList.findIndex((list) => list.id === id);
+    newList[bairlal].edit = !newList[bairlal].edit;
     setList(newList);
   }
 
@@ -57,18 +75,25 @@ export function Example() {
     setEditingText(newEditingText);
   }
 
-  function editSave() {}
+  function editSave(id, index) {
+    const newList = [...list];
+    newList[index].text = editingText[id];
+    setList(newList);
 
-  function cancelEdit(id) {
-    const newEditingText = { ...editingText };
-    newEditingText[id] = undefined;
-    setEditingText(newEditingText);
+    cancelEdit(id);
   }
 
-  function editPicture(e) {
-    const newPicture = { ...picture };
-    newPicture[list.id] = e.target.value;
-    setPicture(newPicture);
+  function removeList(index) {
+    const newList = [...list];
+    newList.splice(index, 1);
+    setList(newList);
+  }
+
+  function cancelEdit(id) {
+    const newList = [...list];
+    const bairlal = newList.findIndex((list) => list.id === id);
+    newList[bairlal].edit = !newList[bairlal].edit;
+    setList(newList);
   }
 
   return (
@@ -87,17 +112,22 @@ export function Example() {
             <Modal.Body>
               <div>
                 <input
-                  value={picture[list.id]}
                   type={"text"}
-                  onChange={editPicture}
+                  value={picturePath}
                   placeholder="picture url"
+                  onChange={changeImage}
                 />
               </div>
-              <input
-                value={text}
-                placeholder="Ангиллын нэр"
-                onChange={changeText}
-              />
+              <div>
+                <input
+                  value={text}
+                  placeholder="Buteegdehuunii ner"
+                  onChange={changeText}
+                />
+              </div>
+              <div>
+                <input value={price} placeholder="Une" onChange={changePrice} />
+              </div>
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleDelete}>
@@ -111,24 +141,34 @@ export function Example() {
         </div>
       </div>
       {list.map((list, index) => (
-        <li key={list.id}>
-          {editingText[list.id] === undefined ? (
-            <>
-              {list.text}
-              <button onClick={() => editList(list.id)}>zasah</button>
-              <button>remove</button>
-            </>
-          ) : (
-            <>
-              <input
-                value={editingText[list.id]}
-                onChange={(e) => editText(list.id, e)}
-              />
-              <button onClick={() => cancelEdit(list.id)}>bolih</button>
-              <button onClick={editSave}>hadgalah</button>
-            </>
-          )}
-        </li>
+        <div key={list.id}>
+          <div>
+            {" "}
+            <img src={list.url} alt="new" />{" "}
+          </div>
+          <p>{list.price}</p>
+          <p> {list.text}</p>
+          <div>
+            {list.edit ? (
+              <>
+                <button onClick={() => editList(list.id, index)}>zasah</button>
+                <button onClick={() => removeList(index)}>remove</button>
+              </>
+            ) : (
+              <>
+                <input
+                  value={editingText[list.id]}
+                  onChange={(e) => editText(list.id, e)}
+                />
+                <button onClick={() => cancelEdit(list.id)}>bolih</button>
+                <button onClick={() => editSave(list.id, index)}>
+                  hadgalah
+                </button>
+              </>
+            )}
+          </div>
+          <button style={{ width: "320px" }}>sagsand nemeh</button>
+        </div>
       ))}
     </div>
   );

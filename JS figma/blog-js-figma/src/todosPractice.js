@@ -70,6 +70,7 @@ export default function TodosPractice() {
     setTodos(newTodos);
 
     cancelEdit(id);
+    console.log("hello");
   }
 
   function editText(id, e) {
