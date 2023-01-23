@@ -8,7 +8,7 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Dropdown from "react-bootstrap/Dropdown";
 import { useState } from "react";
 
-export function Client() {
+export function ClientNature() {
   const [show, setShow] = useState(false);
   const showDropdown = (e) => {
     setShow(!show);
