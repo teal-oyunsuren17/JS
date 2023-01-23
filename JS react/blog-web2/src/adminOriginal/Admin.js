@@ -1,13 +1,11 @@
 import AdminHeader from "./adminHeader";
-import AdminList from "./adminList";
 import { Example } from "./adminNew";
 
-export default function Admin() {
+export default function Admin2() {
   return (
     <>
       <AdminHeader />
       <Example />
-      <AdminList />
     </>
   );
 }

@@ -11,6 +11,10 @@
   padding: 5px;
 }
 
+input {
+  margin-bottom: 10px;
+}
+
 /* .clientBody {
   width: 100%;
   height: 100%;
