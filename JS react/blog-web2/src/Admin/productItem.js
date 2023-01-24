@@ -1,9 +1,10 @@
 import AdminHeader from "./adminHeader";
 
-export function Admin() {
+export function ProductItem() {
   return (
     <div>
       <AdminHeader />
+      Product Item
     </div>
   );
 }

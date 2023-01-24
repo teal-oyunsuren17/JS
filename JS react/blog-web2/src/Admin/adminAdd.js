@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { AdminItem } from "./adminItem";
+import { AdminItem } from "./angilalItem";
 import { AdminModal } from "./adminModal";
+import AdminHeader from "./adminHeader";
 
 export function AdminAdd() {
   const [list, setList] = useState([]);
@@ -13,8 +14,9 @@ export function AdminAdd() {
 
   return (
     <div>
-      <AdminModal />
-      {list.map((c, i) => (
+      <AdminHeader />
+      {/* <AdminModal /> */}
+      {list?.map((c, i) => (
         <AdminItem product={c} index={i} list={list} setList={setList} />
       ))}
     </div>

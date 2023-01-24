@@ -15,6 +15,7 @@ export default function AdminHeader() {
                 background: isActive ? "red" : "",
                 textDecoration: "none",
                 color: "white",
+                padding: "10px 15px",
               })}
               to="/admin/hereglegch"
             >
@@ -25,10 +26,11 @@ export default function AdminHeader() {
                 background: isActive ? "red" : "",
                 textDecoration: "none",
                 color: "white",
+                padding: "10px 15px",
               })}
               to="/admin/angilal"
             >
-              Angilal
+              Ангилал
             </NavLink>
             <NavLink
               style={({ isActive }) => ({
@@ -36,10 +38,23 @@ export default function AdminHeader() {
                 background: isActive ? "red" : "",
                 textDecoration: "none",
                 color: "white",
+                padding: "10px 15px",
               })}
-              to="/admin/sedev"
+              to="/admin/buteegdehuun"
             >
-              Sedev
+              Бүтээгдэхүүн
+            </NavLink>
+            <NavLink
+              style={({ isActive }) => ({
+                // ":hover": { background: "red" },
+                background: isActive ? "red" : "",
+                textDecoration: "none",
+                color: "white",
+                padding: "10px 15px",
+              })}
+              to="/admin/brand"
+            >
+              Brand
             </NavLink>
             <NavLink
               style={({ isActive }) => ({
@@ -47,6 +62,7 @@ export default function AdminHeader() {
                 background: isActive ? "red" : "",
                 textDecoration: "none",
                 color: "white",
+                padding: "10px 15px",
               })}
               to="/admin/medee"
             >
