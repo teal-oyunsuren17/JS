@@ -8,6 +8,7 @@ export function AdminItem({ product, list, setList }) {
     setList(updatedList);
   }
 
+  function editBtn(id) {}
   return (
     <div
       style={{
@@ -30,7 +31,7 @@ export function AdminItem({ product, list, setList }) {
       <div>{product.price}$</div>
       <div>{product.category}</div>
       <div>{product.brand}</div>
-      <button>edit</button>
+      <button onClick={() => editBtn(product.id)}>edit</button>
       <button onClick={() => deleteBtn(product.id)}>remove</button>
     </div>
   );
