@@ -1,12 +1,14 @@
 import Modal from "react-bootstrap/Modal";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 
 export function AdminModal() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  function handleSave() {}
 
   return (
     <div className=" m-5 text-center">
@@ -24,15 +26,20 @@ export function AdminModal() {
 
             <Modal.Body>
               <div>
-                <label id="email" />
-                <input placeholder="Email" />
+                <input placeholder="Title..." />
+              </div>
+              <div>
+                <input placeholder="Price..." />
+              </div>
+              <div>
+                <input placeholder="Category..." />
               </div>
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>
                 Устгах
               </Button>
-              <Button variant="primary" onClick={handleClose}>
+              <Button variant="primary" onClick={handleSave}>
                 Хадгалах
               </Button>
             </Modal.Footer>

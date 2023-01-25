@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { AdminItem } from "./angilalItem";
-import { AdminModal } from "./adminModal";
 import AdminHeader from "./adminHeader";
 
 export function AdminAdd() {
-  const [list, setList] = useState([]);
+  const [angilal, setAngilal] = useState([]);
 
   useEffect(() => {
-    fetch("https://dummyjson.com/products")
+    fetch("http://localhost:8080/angilal")
       .then((req) => req.json())
-      .then((data) => setList(data.products));
+      .then((data) => setAngilal(data));
   }, []);
 
   return (
     <div>
       <AdminHeader />
-      {/* <AdminModal /> */}
-      {list?.map((c, i) => (
-        <AdminItem product={c} index={i} list={list} setList={setList} />
+      {angilal?.map((c, i) => (
+        <AdminItem product={c} index={i} list={angilal} setList={setAngilal} />
       ))}
     </div>
   );

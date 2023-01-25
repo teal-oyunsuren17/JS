@@ -12,8 +12,9 @@ export function AdminItem({ product, index, list, setList }) {
 
   function saveBtn() {
     const updatedItem = list[index];
-    updatedItem.category = newCategory;
-    const updatedList = [...list, updatedItem];
+    updatedItem.title = newCategory;
+    const updatedList = list;
+    updatedList[index] = updatedItem;
     setList(updatedList);
     setEdited(!edited);
     setNewCategory("");
@@ -24,45 +25,45 @@ export function AdminItem({ product, index, list, setList }) {
     setNewCategory("");
   }
   return (
-    <div>
-      <div
-        key={product.id}
-        style={{
-          textDecoration: checked ? "line-through" : "none",
-          display: "flex",
-          marginBottom: "20px",
-          alignItems: "center",
-          gap: "10px",
-        }}
-      >
+    <div
+      key={product.id}
+      style={{
+        textDecoration: checked ? "line-through" : "none",
+        display: "flex",
+        marginBottom: "20px",
+        alignItems: "center",
+        gap: "10px",
+      }}
+    >
+      <input
+        type={"checkbox"}
+        onChange={() => setChecked(!checked)}
+        checked={checked}
+      />
+      {edited ? (
+        <>
+          <div style={{ width: "10%" }}> {product.title}</div>
+        </>
+      ) : (
         <input
-          type={"checkbox"}
-          onChange={() => setChecked(!checked)}
-          checked={checked}
+          value={newCategory}
+          onChange={(e) => setNewCategory(e.target.value)}
         />
-        {edited ? (
-          <div style={{ width: "10%" }}>{product.category}</div>
-        ) : (
-          <input
-            value={newCategory}
-            onChange={(e) => setNewCategory(e.target.value)}
-          />
-        )}
-        <div style={{ width: "10%" }}>
-          ene angilald hichneen baraa baigaag bichih heseg
-        </div>
-        {!edited ? (
-          <>
-            <button onClick={cancelBtn}>cancel</button>
-            <button onClick={saveBtn}>save</button>
-          </>
-        ) : (
-          <>
-            <button onClick={() => setEdited(!edited)}>edit</button>
-            <button onClick={() => deleteBtn(product.id)}>remove</button>
-          </>
-        )}
+      )}
+      <div style={{ width: "10%" }}>
+        ene angilald hichneen baraa baigaag bichih heseg
       </div>
+      {!edited ? (
+        <>
+          <button onClick={cancelBtn}>cancel</button>
+          <button onClick={saveBtn}>save</button>
+        </>
+      ) : (
+        <>
+          <button onClick={() => setEdited(!edited)}>edit</button>
+          <button onClick={() => deleteBtn(product.id)}>remove</button>
+        </>
+      )}
     </div>
   );
 }
