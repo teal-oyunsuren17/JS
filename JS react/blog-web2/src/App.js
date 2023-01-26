@@ -9,7 +9,7 @@ import { Admin } from "./Admin/Admin";
 import { Angilal } from "./Client/angilal";
 import { Brand } from "./Client/brand";
 import { Salbaruud } from "./Client/salbaruud";
-import { ProductItem } from "./Admin/productItem";
+import { ProductAdd } from "./Admin/productAdd";
 import { AdminAdd } from "./Admin/adminAdd";
 import AdminHeader from "./Admin/adminHeader";
 
@@ -29,7 +29,7 @@ export default function App() {
             }
           />
           <Route path="/admin/angilal" element={<AdminAdd />} />
-          <Route path="/admin/buteegdehuun" element={<ProductItem />} />
+          <Route path="/admin/buteegdehuun" element={<ProductAdd />} />
           <Route
             path="/admin/medee"
             element={
