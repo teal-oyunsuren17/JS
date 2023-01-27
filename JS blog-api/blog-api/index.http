@@ -1,0 +1,16 @@
+GET http://localhost:8080/angilal 
+
+###
+
+GET http://localhost:8080/angilal/id
+
+###
+
+POST http://localhost:8080/angilal
+content-type: application/json
+
+{
+    "title": "sample",
+}
+
+# DELETE http://localhost:8080/angilal/
