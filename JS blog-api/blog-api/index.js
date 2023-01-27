@@ -44,20 +44,19 @@ app.post("/angilal", (req, res) => {
   res.sendStatus(201);
 });
 
-app.delete("angilal/:id"),
-  (req, res) => {
-    const { id } = req.params;
-    const one = angilal.find((angilal) => angilal.id === id);
-    if (one) {
-      const newList = angilal.filter((angilal) => angilal.id !== id);
-      angilal = newList;
-      res.json({ deletedId: id });
-    } else {
-      res.sendStatus(404);
-    }
-  };
+app.delete("/angilal/:id", (req, res) => {
+  const { id } = req.params;
+  const one = angilal.find((angilal) => angilal.id === id);
+  if (one) {
+    const newList = angilal.filter((angilal) => angilal.id !== id);
+    angilal = newList;
+    res.json({ deletedId: id });
+  } else {
+    res.sendStatus(404);
+  }
+});
 
-app.put("angilal/:id", (req, res) => {
+app.put("/angilal/:id", (req, res) => {
   const { id } = req.params;
   const { title } = req.body;
   const index = angilal.findIndex((angilal) => angilal.id === id);
@@ -69,33 +68,89 @@ app.put("angilal/:id", (req, res) => {
   }
 });
 
+let buteegdehuun = [
+  {
+    id: v4(),
+    title: "HEIMISH Varnish Velvet Lip Tint",
+    price: 28800 + "₮",
+    category: "Нүүр будалт",
+  },
+  {
+    id: v4(),
+    title: "DERMATORY Hypoallergenic Moisturizing Knit Mask",
+    price: 8800 + "₮",
+    category: "Арьс арчилгаа",
+  },
+  {
+    id: v4(),
+    title: "MISSHA Damaged Hair Therapy Shampoo",
+    price: 25000 + "₮",
+    category: "Үс, бие арчилгаа",
+  },
+  {
+    id: v4(),
+    title: "DERMATORY Allantion Feminine Wash 190ml",
+    price: 48000 + "₮",
+    category: "Цэвэрлэгээ",
+  },
+];
+
 app.get("/buteegdehuun", (req, res) => {
-  res.json([
-    {
-      id: v4(),
-      title: "HEIMISH Varnish Velvet Lip Tint",
-      price: 28800 + "₮",
-      category: "Нүүр будалт",
-    },
-    {
-      id: v4(),
-      title: "DERMATORY Hypoallergenic Moisturizing Knit Mask",
-      price: 8800 + "₮",
-      category: "Арьс арчилгаа",
-    },
-    {
-      id: v4(),
-      title: "MISSHA Damaged Hair Therapy Shampoo",
-      price: 25000 + "₮",
-      category: "Үс, бие арчилгаа",
-    },
-    {
-      id: v4(),
-      title: "DERMATORY Allantion Feminine Wash 190ml",
-      price: 48000 + "₮",
-      category: "Цэвэрлэгээ",
-    },
-  ]);
+  res.json(buteegdehuun);
+});
+
+app.get("/buteegdehuun/:id", (req, res) => {
+  const { id } = req.params;
+  const one = buteegdehuun.find((buteegdehuun1) => buteegdehuun1.id === id);
+  if (one) {
+    res.json(one);
+  } else {
+    res.sendStatus(404);
+  }
+});
+
+app.post("/buteegdehuun", (req, res) => {
+  const { title } = req.body;
+  const { price } = req.body;
+  const { category } = req.body;
+  const newButeegdehuun = {
+    id: v4(),
+    title: title,
+    price: price,
+    category: category,
+  };
+  buteegdehuun.unshift(newButeegdehuun);
+  res.sendStatus(201);
+});
+
+app.delete("/buteegdehuun/:id", (req, res) => {
+  const { id } = req.params;
+  const one = buteegdehuun.find((buteegdehuun1) => buteegdehuun1.id === id);
+  if (one) {
+    const newButeegdehuun = buteegdehuun.filter(
+      (buteegdehuun1) => buteegdehuun1.id !== id
+    );
+    buteegdehuun = newButeegdehuun;
+    res.json({ deletedId: id });
+  } else {
+    res.sendStatus(404);
+  }
+});
+
+app.put("/buteegdehuun/:id", (req, res) => {
+  const { id } = req.params;
+
+  console.log(req.body);
+  const index = buteegdehuun.findIndex(
+    (buteegdehuun1) => buteegdehuun1.id === id
+  );
+
+  if (-1 < index) {
+    buteegdehuun[index] = req.body;
+    res.json({ updatedId: id });
+  } else {
+    res.sendStatus(404);
+  }
 });
 
 app.listen(port, () => {

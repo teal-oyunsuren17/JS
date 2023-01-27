@@ -1,21 +1,31 @@
+import axios from "axios";
 import { useState } from "react";
 
-export function ProductItem({ product, index, products, setProducts }) {
+export function ProductItem({
+  product,
+  index,
+  products,
+  setProducts,
+  onChange,
+}) {
   const [checked, setChecked] = useState(false);
   const [edited, setEdited] = useState(true);
+  const [newTitle, setNewTitle] = useState("");
+  const [newPrice, setNewPrice] = useState("");
   const [newCategory, setNewCategory] = useState("");
 
-  function deleteBtn(id) {
-    const updatedProduct = products.filter((l) => l.id !== id);
-    setProducts(updatedProduct);
-  }
+  function saveBtn() {
+    axios
+      .put(`http://localhost:8080/buteegdehuun/${product.id}`, {
+        id: product.id,
+        title: newTitle,
+        price: newPrice,
+        category: newCategory,
+      })
+      .then((res) => {
+        onChange();
+      });
 
-  function saveBtn(index) {
-    const updatedItem = products[index];
-    updatedItem.category = newCategory;
-    const updatedProduct = products;
-    updatedProduct[index] = updatedItem;
-    setProducts(updatedProduct);
     setEdited(!edited);
     setNewCategory("");
   }
@@ -23,6 +33,16 @@ export function ProductItem({ product, index, products, setProducts }) {
   function cancelBtn() {
     setEdited(!edited);
     setNewCategory("");
+  }
+
+  function handleDelete() {
+    if (window.confirm("Delete?")) {
+      axios
+        .delete(`http://localhost:8080/buteegdehuun/${product.id}`)
+        .then((res) => {
+          onChange();
+        });
+    }
   }
 
   return (
@@ -50,21 +70,30 @@ export function ProductItem({ product, index, products, setProducts }) {
         ) : (
           <>
             <input
+              value={newTitle}
+              onChange={(e) => setNewTitle(e.target.value)}
+            />
+
+            <input
+              value={newPrice}
+              onChange={(e) => setNewPrice(e.target.value)}
+            />
+
+            <input
               value={newCategory}
               onChange={(e) => setNewCategory(e.target.value)}
             />
-            123
           </>
         )}
         {!edited ? (
           <>
             <button onClick={cancelBtn}>cancel</button>
-            <button onClick={() => saveBtn(index)}>save</button>
+            <button onClick={saveBtn}>save</button>
           </>
         ) : (
           <>
             <button onClick={() => setEdited(!edited)}>edit</button>
-            <button onClick={() => deleteBtn(product.id)}>remove</button>
+            <button onClick={handleDelete}>remove</button>
           </>
         )}
       </div>

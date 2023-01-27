@@ -2,7 +2,7 @@ GET http://localhost:8080/angilal
 
 ###
 
-GET http://localhost:8080/angilal/id
+GET http://localhost:8080/angilal/7bdd3dcd-39e5-45ef-b36a-09c1c8e2b735
 
 ###
 
@@ -10,7 +10,51 @@ POST http://localhost:8080/angilal
 content-type: application/json
 
 {
-    "title": "sample",
+    "title": "sample"
 }
 
-# DELETE http://localhost:8080/angilal/
+###
+
+DELETE http://localhost:8080/angilal/523c44ea-7306-4bc5-be5c-87c65c7ca46b
+
+### 
+
+PUT http://localhost:8080/angilal/523c44ea-7306-4bc5-be5c-87c65c7ca46b
+content-type: application/json
+
+{
+    "title": "Oyuka"
+}
+
+# ------------------------------------#
+
+###
+GET http://localhost:8080/buteegdehuun
+
+###
+
+GET http://localhost:8080/buteegdehuun/b966e3d2-9ba3-4728-80dd-41eab2e65bb9
+
+###
+
+POST http://localhost:8080/buteegdehuun
+content-type: application/json
+
+{
+    "title": "sample",
+    "price": 5000,
+    "category" : "Цэвэрлэгээ"
+}
+
+###
+
+DELETE http://localhost:8080/buteegdehuun/97d3b147-3740-465d-b760-3fa6635d0a9e
+
+### 
+
+PUT http://localhost:8080/buteegdehuun/a488f436-76de-46c6-927f-2b2c36a8ee17
+content-type: application/json
+
+{
+    "title": "Oyuka"
+}
