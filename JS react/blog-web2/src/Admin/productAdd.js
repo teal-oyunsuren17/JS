@@ -52,14 +52,8 @@ export function ProductAdd() {
         onClose={closeModal}
         onComplete={loadProducts}
       />
-      {products.map((p, index) => (
-        <ProductItem
-          product={p}
-          index={index}
-          products={products}
-          setProducts={setProducts}
-          onChange={loadProducts}
-        />
+      {products.map((p) => (
+        <ProductItem product={p} onChange={loadProducts} />
       ))}
     </div>
   );

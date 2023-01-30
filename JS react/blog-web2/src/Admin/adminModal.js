@@ -10,6 +10,7 @@ export function AdminModal({ show, onClose, onComplete }) {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
+  const [thumbnail, setThumbnail] = useState("");
 
   function handleSave() {
     setLoading(true);
@@ -20,6 +21,7 @@ export function AdminModal({ show, onClose, onComplete }) {
         id: v4(),
         title: title,
         price: price,
+        thumbnail: thumbnail,
       })
       .then((res) => {
         const { status } = res;
@@ -29,6 +31,7 @@ export function AdminModal({ show, onClose, onComplete }) {
           setTitle("");
           setPrice("");
           setCategory("");
+          setThumbnail("");
           setLoading(false);
         }
       });
@@ -80,6 +83,14 @@ export function AdminModal({ show, onClose, onComplete }) {
               placeholder="Price..."
               value={price}
               onChange={(e) => setPrice(e.target.value)}
+            />
+          </div>
+          <div>
+            <input
+              disabled={loading}
+              placeholder="Image url ..."
+              value={thumbnail}
+              onChange={(e) => setThumbnail(e.target.value)}
             />
           </div>
         </Modal.Body>

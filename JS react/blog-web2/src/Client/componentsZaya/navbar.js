@@ -14,11 +14,13 @@ export function NavbarZaya() {
         }}
         className={"d-flex flex-row align-items-center"}
       >
-        <img
-          src="https://www.zayabilgee.mn/web/image/website/4/logo/Zayabilgee?unique=bf8d8dc"
-          alt=""
-          style={{ width: "auto", height: "2.5rem" }}
-        />
+        <NavLink to={"/*"}>
+          <img
+            src="https://www.zayabilgee.mn/web/image/website/4/logo/Zayabilgee?unique=bf8d8dc"
+            alt=""
+            style={{ width: "auto", height: "2.5rem" }}
+          />
+        </NavLink>
         <div>
           <NavLink
             style={({ isActive }) => ({
@@ -31,6 +33,20 @@ export function NavbarZaya() {
             to={"/angilal"}
           >
             Angilal{" "}
+          </NavLink>
+        </div>
+        <div>
+          <NavLink
+            style={({ isActive }) => ({
+              border: isActive ? "1px solid white" : "none",
+              borderRadius: isActive ? "5px" : "0",
+              color: "white",
+              textDecoration: "none",
+              padding: "8px 20px",
+            })}
+            to={"/buteegdehuun"}
+          >
+            Buteegdehuun
           </NavLink>
         </div>
         <div>

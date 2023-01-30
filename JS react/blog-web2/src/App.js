@@ -12,6 +12,7 @@ import { Salbaruud } from "./Client/salbaruud";
 import { ProductAdd } from "./Admin/productAdd";
 import { AdminAdd } from "./Admin/adminAdd";
 import AdminHeader from "./Admin/adminHeader";
+import { Buteegdehuun } from "./Client/buteegdehuun";
 
 export default function App() {
   return (
@@ -42,6 +43,7 @@ export default function App() {
 
           <Route path="*" element={<ClientZaya />} />
           <Route path="/angilal" element={<Angilal />} />
+          <Route path="/buteegdehuun" element={<Buteegdehuun />} />
           <Route path="/brand" element={<Brand />} />
           <Route path="/salbaruud" element={<Salbaruud />} />
         </Routes>

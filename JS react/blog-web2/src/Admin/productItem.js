@@ -1,13 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 
-export function ProductItem({
-  product,
-  index,
-  products,
-  setProducts,
-  onChange,
-}) {
+export function ProductItem({ product, onChange }) {
   const [checked, setChecked] = useState(false);
   const [edited, setEdited] = useState(true);
   const [newTitle, setNewTitle] = useState("");
