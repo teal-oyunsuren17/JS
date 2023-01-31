@@ -13,6 +13,7 @@ import { ProductAdd } from "./Admin/productAdd";
 import { AdminAdd } from "./Admin/angilalAdd";
 import AdminHeader from "./Admin/adminHeader";
 import { Buteegdehuun } from "./Client/zayaComponent/buteegdehuun";
+import { NuurBudalt } from "./Client/zayaAngilal/nuurBudalt";
 
 export default function App() {
   return (
@@ -26,7 +27,7 @@ export default function App() {
           <Route path="/admin/medee" element={<AdminHeader />} />
 
           <Route path="*" element={<ClientZaya />} />
-          <Route path="/angilal" element={<Angilal />} />
+          <Route path="/angilal/nuur-budalt" element={<NuurBudalt />} />
           <Route path="/buteegdehuun" element={<Buteegdehuun />} />
           <Route path="/brand" element={<Brand />} />
           <Route path="/salbaruud" element={<Salbaruud />} />

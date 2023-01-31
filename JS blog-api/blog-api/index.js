@@ -16,8 +16,16 @@ function readAngilal() {
 }
 
 app.get("/angilal", (req, res) => {
+  const { q } = req.query;
   const angilal = readAngilal();
-  res.json(angilal);
+  if (q) {
+    const filteredAngilal = angilal.filter((angilal) =>
+      angilal.title.toLowerCase().includes(q.toLowerCase())
+    );
+    res.json(filteredAngilal);
+  } else {
+    res.json(angilal);
+  }
 });
 
 app.get("/angilal/:id", (req, res) => {
@@ -77,8 +85,16 @@ function readButeegdehuun() {
 }
 
 app.get("/buteegdehuun", (req, res) => {
+  const { q } = req.query;
   const buteegdehuun = readButeegdehuun();
-  res.json(buteegdehuun);
+  if (q) {
+    const filteredButeegdehuun = buteegdehuun.filter((buteeg) =>
+      buteeg.title.toLowerCase().includes(q.toLowerCase())
+    );
+    res.json(filteredButeegdehuun);
+  } else {
+    res.json(buteegdehuun);
+  }
 });
 
 app.get("/buteegdehuun/:id", (req, res) => {

@@ -2,6 +2,7 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useDebounce } from "use-debounce";
 
 import AdminHeader from "./adminHeader";
 import { AdminModal } from "./adminModal";
@@ -10,9 +11,11 @@ import { ProductItem } from "./productItem";
 export function ProductAdd() {
   const [searchParams, setSearchParams] = useSearchParams({});
   const [products, setProducts] = useState([]);
+  const [query, setQuery] = useState("");
+  const [searchedQuery] = useDebounce(query, 1000);
 
-  function loadProducts() {
-    axios.get("http://localhost:8080/buteegdehuun").then((res) => {
+  function loadProducts(query = "") {
+    axios.get(`http://localhost:8080/buteegdehuun?q=${query}`).then((res) => {
       const { data, status } = res;
       if (status === 200) {
         setProducts(data);
@@ -21,6 +24,10 @@ export function ProductAdd() {
       }
     });
   }
+
+  useEffect(() => {
+    loadProducts(searchedQuery);
+  }, [searchedQuery]);
 
   useEffect(() => {
     loadProducts();
@@ -47,6 +54,7 @@ export function ProductAdd() {
       </div>
 
       <AdminHeader />
+      <input value={query} onChange={(e) => setQuery(e.target.value)} />
       <AdminModal
         show={editing}
         onClose={closeModal}
