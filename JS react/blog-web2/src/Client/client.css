@@ -6,3 +6,11 @@
 .contactDiv {
     gap: 20px;
 }
+
+.clientBody {
+    background-image: url("https://scontent.fuln6-2.fna.fbcdn.net/v/t1.6435-9/112624251_156169846078349_7441518531476606803_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=973b4a&_nc_ohc=6d6KgHUdpycAX9rI4C-&_nc_ht=scontent.fuln6-2.fna&oh=00_AfDHHl6d8zOxwSQUg2xfYCjgxzbKdhtgmHoHgMwRLTsl_g&oe=63FFE531");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}

@@ -1,11 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { NavbarZaya } from "./componentsZaya/navbar";
+import { NavbarZaya } from "./navbar";
 
-export function Buteegdehuun() {
+export function Angilal() {
   const [product, setProduct] = useState([]);
+
+  function changePath() {}
+
   useEffect(() => {
-    axios.get("http://localhost:8080/buteegdehuun").then((res) => {
+    axios.get("http://localhost:8080/angilal").then((res) => {
       const { data, status } = res;
       if (status === 200) {
         setProduct(data);
@@ -14,16 +17,15 @@ export function Buteegdehuun() {
       }
     });
   });
-
   return (
     <div style={{ background: "#D4D4D4" }}>
       <NavbarZaya />
-      <div className="d-flex flex-column text-center align-items-center">
+      <div className="d-flex flex-row flex-wrap text-center">
         {product.map((p) => (
           <div
             key={p.id}
-            className="col-lg-2 col-md-4 col-6 d-flex flex-column justify-content-between mb-3"
-            // style={{ marginBottom: "20px", padding: "0 15px", height: "200px" }}
+            className="col-lg-2 col-md-4 col-6 d-flex flex-column justify-content-between"
+            style={{ marginBottom: "20px", padding: "0 15px", height: "200px" }}
           >
             <div>
               <img
@@ -32,10 +34,11 @@ export function Buteegdehuun() {
                 style={{ width: "130px", height: "130px", borderRadius: "50%" }}
               />
             </div>
-            <div>{p.title}</div>
-            <div>{p.price}</div>
-            <button style={{ borderRadius: "10rem", padding: "5px" }}>
-              {p.category}{" "}
+            <button
+              onClick={() => changePath()}
+              style={{ borderRadius: "10rem", padding: "5px" }}
+            >
+              {p.title}{" "}
             </button>
           </div>
         ))}

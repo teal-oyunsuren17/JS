@@ -4,15 +4,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { ToastContainer } from "react-toastify";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import { ClientZaya } from "./Client/clientZaya";
+import { ClientZaya } from "./Client/zayaComponent/clientZaya";
 import { Admin } from "./Admin/Admin";
-import { Angilal } from "./Client/angilal";
-import { Brand } from "./Client/brand";
-import { Salbaruud } from "./Client/salbaruud";
+import { Angilal } from "./Client/zayaComponent/angilal";
+import { Brand } from "./Client/zayaComponent/brand";
+import { Salbaruud } from "./Client/zayaComponent/salbaruud";
 import { ProductAdd } from "./Admin/productAdd";
-import { AdminAdd } from "./Admin/adminAdd";
+import { AdminAdd } from "./Admin/angilalAdd";
 import AdminHeader from "./Admin/adminHeader";
-import { Buteegdehuun } from "./Client/buteegdehuun";
+import { Buteegdehuun } from "./Client/zayaComponent/buteegdehuun";
 
 export default function App() {
   return (
@@ -20,26 +20,10 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/admin/*" element={<Admin />} />
-          <Route
-            path="/admin/hereglegch"
-            element={
-              <div>
-                {" "}
-                <AdminHeader /> hereglegch{" "}
-              </div>
-            }
-          />
+          <Route path="/admin/hereglegch" element={<AdminHeader />} />
           <Route path="/admin/angilal" element={<AdminAdd />} />
           <Route path="/admin/buteegdehuun" element={<ProductAdd />} />
-          <Route
-            path="/admin/medee"
-            element={
-              <div>
-                {" "}
-                <AdminHeader /> medee
-              </div>
-            }
-          />
+          <Route path="/admin/medee" element={<AdminHeader />} />
 
           <Route path="*" element={<ClientZaya />} />
           <Route path="/angilal" element={<Angilal />} />

@@ -1,4 +1,4 @@
-import { NavbarZaya } from "./componentsZaya/navbar";
+import { NavbarZaya } from "./navbar";
 
 export function Brand() {
   return (
