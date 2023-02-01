@@ -27,6 +27,7 @@ export default function App() {
           <Route path="/admin/medee" element={<AdminHeader />} />
 
           <Route path="*" element={<ClientZaya />} />
+          <Route path="/angilal" element={<Angilal />} />
           <Route path="/angilal/nuur-budalt" element={<NuurBudalt />} />
           <Route path="/buteegdehuun" element={<Buteegdehuun />} />
           <Route path="/brand" element={<Brand />} />
